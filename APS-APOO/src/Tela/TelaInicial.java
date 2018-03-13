@@ -15,31 +15,27 @@ import javax.swing.border.EmptyBorder;
 public class TelaInicial extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	
 	private JLabel lblTitolo,lblImagem;
 	private JButton btLogin,btCadastro;
 
 	
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaInicial frame = new TelaInicial();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		TelaInicial ex = new TelaInicial();
+		ex.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ex.getContentPane().setBackground(Color.darkGray);
+		ex.setResizable(false);
+		ex.setSize(300,400);
+		ex.setVisible(true);
+		ex.setLocationRelativeTo(null);
+		ex.setTitle("APS - APOO");
 	}
+		
 
 	public TelaInicial() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		
 		
 		setLayout(null);
 		
@@ -60,7 +56,7 @@ public class TelaInicial extends JFrame {
 	    
 	    lblImagem = new JLabel();
 	    lblImagem.setBounds(150,15,100,100);
-	    ImageIcon imagem = new ImageIcon(TelaPrincipal.class.getResource("/Tela/Icon.png"));
+	    ImageIcon imagem = new ImageIcon(TelaInicial.class.getResource("/Tela/Icon.png"));
 	    Image imag = imagem.getImage().getScaledInstance(lblImagem.getWidth(), lblImagem.getHeight(), Image.SCALE_DEFAULT);
 	    lblImagem.setIcon(new ImageIcon(imag));
 	    add(lblImagem);
