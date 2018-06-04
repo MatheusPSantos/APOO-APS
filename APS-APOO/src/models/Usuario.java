@@ -1,9 +1,9 @@
-package models;
-
 /**
  * @matheuspsantos
  */
 // Classe mãe Usuário
+package models;
+
 public class Usuario {
     // atributos da classe
     private String nome;
@@ -15,44 +15,44 @@ public class Usuario {
     // métodos acessores
 
     // set's
-    public setNome(String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public setSenha(String senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 
-    public setEndereco(String endereco) {
+    public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
 
-    public setTelefone(String telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
     // get's
-    public getNome() {
+    public String getNome() {
         return this.nome;
     }
 
-    public getEmail() {
+    public String getEmail() {
         return this.email;
     }
 
-    public getSenha() {
+    public String getSenha() {
         return this.senha;
     }
 
-    public getEndereco() {
+    public String getEndereco() {
         return this.endereco;
     }
 
-    public getTelefone() {
+    public String getTelefone() {
         return this.telefone;
     }
 }
