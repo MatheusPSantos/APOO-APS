@@ -6,9 +6,10 @@
 
 package models;
 
-public class PesFisica extends Usuario {
+// Definição da Classe Cliente
+public class Cliente extends Usuario {
     // atributos
-    String cpf;
+    private String cpf;
 
     // métodos acessores
     // set's
