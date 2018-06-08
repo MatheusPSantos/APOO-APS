@@ -3,6 +3,8 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,7 +16,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
 import javax.swing.JPasswordField;
 
-public class ViewCadastro extends JFrame {
+public class ViewCadastro extends JFrame implements ActionListener {
 
 	
 	private static final long serialVersionUID = 1L;
@@ -133,9 +135,23 @@ public class ViewCadastro extends JFrame {
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setBackground(Color.darkGray);
 		setResizable(false);
-		setSize(300,400);
+		setSize(607,476);
 		setVisible(true);
 		setLocationRelativeTo(null);
-		setTitle("APS - APOO");
+		setTitle("Cadastro");
+		
+		btOk.addActionListener(new btAcao());
 	}
+	private class btAcao implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			JButton c =(JButton) e.getSource();
+			if (c  == btOk) {
+				new ViewLogin();
+				setVisible(false);
+			}
+		}	
+}
 }

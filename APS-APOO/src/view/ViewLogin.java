@@ -53,9 +53,9 @@ public class ViewLogin extends JFrame {
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setBackground(Color.darkGray);
 		setResizable(false);
-		setSize(300,400);
+		setSize(607,476);
 		setVisible(true);
 		setLocationRelativeTo(null);
-		setTitle("APS - APOO");
+		setTitle("Login");
 	}
 }
