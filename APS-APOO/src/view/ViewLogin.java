@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class ViewLogin extends JFrame {
@@ -12,8 +13,8 @@ public class ViewLogin extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private JLabel lblID,lblLogin,lblSenha;
-	private JTextField ID,Senha;
-
+	private JTextField ID;
+	private JPasswordField Senha;
 	
 	
 	public static void main(String[] args) {
@@ -44,7 +45,7 @@ public class ViewLogin extends JFrame {
 	    lblSenha.setBounds(10,62,45,20);
 	    getContentPane().add(lblSenha);
 	    
-	    Senha = new JTextField("");
+	    Senha = new JPasswordField();
 	    Senha.setBounds(55,62,220,20);
 	    getContentPane().add(Senha);
 	    
