@@ -1,43 +1,39 @@
-package Tela;
+package view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
-public class TelaInicial extends JFrame {
+public class View extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	
 	private JLabel lblTitolo,lblImagem;
 	private JButton btLogin,btCadastro;
+	
 
 	
 	public static void main(String[] args) {
-		TelaInicial ex = new TelaInicial();
-		ex.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ex.getContentPane().setBackground(Color.darkGray);
-		ex.setResizable(false);
-		ex.setSize(300,400);
-		ex.setVisible(true);
-		ex.setLocationRelativeTo(null);
-		ex.setTitle("APS - APOO");
+		new View();
+		
 	}
 		
 
-	public TelaInicial() {
+	public View() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
 		
 		setLayout(null);
+		
 		
 		lblTitolo = new JLabel("APS - APOO");
 	    lblTitolo.setForeground(Color.black);
@@ -47,6 +43,7 @@ public class TelaInicial extends JFrame {
 	    btLogin = new JButton("Login");
 	    btLogin.setBounds(10,40,100,20);
 	    btLogin.setBackground(Color.white);
+	    btLogin.addActionListener(this);
 	    add(btLogin);
 	    
 	    btCadastro = new JButton("Cadastro");
@@ -56,11 +53,34 @@ public class TelaInicial extends JFrame {
 	    
 	    lblImagem = new JLabel();
 	    lblImagem.setBounds(150,15,100,100);
-	    ImageIcon imagem = new ImageIcon(TelaInicial.class.getResource("/Tela/Icon.png"));
+	    ImageIcon imagem = new ImageIcon(View.class.getResource("/view/Icon.png"));
 	    Image imag = imagem.getImage().getScaledInstance(lblImagem.getWidth(), lblImagem.getHeight(), Image.SCALE_DEFAULT);
 	    lblImagem.setIcon(new ImageIcon(imag));
 	    add(lblImagem);
 	    
-	}
+	    btCadastro.addActionListener(new btAcao());
+	    
+	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setBackground(Color.darkGray);
+		setResizable(false);
+		setSize(300,400);
+		setVisible(true);
+		setLocationRelativeTo(null);
+		setTitle("APS - APOO");
 
+	}
+	private class btAcao implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			JButton c =(JButton) e.getSource();
+			if (c  == btCadastro) {
+				new TelaCadastro2();
+				setVisible(false);
+			}
+		}
+		
+		
+	}
 }

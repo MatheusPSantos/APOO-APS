@@ -1,4 +1,4 @@
-package Tela;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
 import javax.swing.JPasswordField;
 
-public class TelaCadastro extends JFrame {
+public class ViewCadastro extends JFrame {
 
 	
 	private static final long serialVersionUID = 1L;
@@ -27,17 +27,11 @@ public class TelaCadastro extends JFrame {
 	
 	
 	public static void main(String[] args) {
-		TelaCadastro ex = new TelaCadastro();
-		ex.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ex.getContentPane().setBackground(Color.darkGray);
-		ex.setResizable(false);
-		ex.setSize(300,400);
-		ex.setVisible(true);
-		ex.setLocationRelativeTo(null);
-		ex.setTitle("APS - APOO");
+	 new ViewCadastro();
+		
 	}
 
-	public TelaCadastro() {
+	public ViewCadastro() {
 		
 		getContentPane().setLayout(null);
 		
@@ -135,5 +129,13 @@ public class TelaCadastro extends JFrame {
 	    pwdRr.setText("rr");
 	    pwdRr.setBounds(55, 232, 220, 20);
 	    getContentPane().add(pwdRr);
+	    
+	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setBackground(Color.darkGray);
+		setResizable(false);
+		setSize(300,400);
+		setVisible(true);
+		setLocationRelativeTo(null);
+		setTitle("APS - APOO");
 	}
 }
