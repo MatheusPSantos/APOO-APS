@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,7 +11,7 @@ public class ViewLogin extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private JLabel lblID,lblLogin,lblSenha;
+	private JLabel lblID,lblSenha;
 	private JTextField ID;
 	private JPasswordField Senha;
 	
@@ -25,30 +24,37 @@ public class ViewLogin extends JFrame {
 	public ViewLogin() {
 		
 		getContentPane().setLayout(null);
-		
-		lblLogin = new JLabel("Login");
-		lblLogin.setForeground(Color.white);
-	    lblLogin.setBounds(116,0,60,20);
-	    getContentPane().add(lblLogin);
 	    
+		/**
+		 * Labels.
+		 */
+		
 	    lblID = new JLabel("ID :");
 	    lblID.setForeground(Color.white);
-	    lblID.setBounds(30,37,25,20);
+	    lblID.setBounds(202,159,25,20);
 	    getContentPane().add(lblID);
-	    
-	    ID = new JTextField("ID/E-mail");
-	    ID.setBounds(55,37,220,20);
-	    getContentPane().add(ID);
 	    
 	    lblSenha = new JLabel("Senha :");
 	    lblSenha.setForeground(Color.white);
-	    lblSenha.setBounds(10,62,45,20);
+	    lblSenha.setBounds(182,190,45,20);
 	    getContentPane().add(lblSenha);
 	    
+	    
+	    /**
+		 * Caixa de texto que pega as informações.
+		 */
+	    
 	    Senha = new JPasswordField();
-	    Senha.setBounds(55,62,220,20);
+	    Senha.setBounds(237,190,220,20);
 	    getContentPane().add(Senha);
 	    
+	    ID = new JTextField("ID/E-mail");
+	    ID.setBounds(237,159,220,20);
+	    getContentPane().add(ID);
+	    
+	    /**
+		 * Definição do Frame.
+		 */
 	    
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setBackground(Color.darkGray);

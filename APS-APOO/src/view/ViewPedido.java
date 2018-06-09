@@ -17,6 +17,10 @@ import javax.swing.JRadioButton;
 import javax.swing.JPasswordField;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
+import javax.swing.JList;
+import javax.swing.JMenuItem;
+import java.awt.Choice;
+import java.awt.Font;
 
 public class ViewPedido extends JFrame implements ActionListener {
 	
@@ -39,6 +43,17 @@ public class ViewPedido extends JFrame implements ActionListener {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setBackground(Color.darkGray);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
+		panel.setToolTipText("cv");
+		getContentPane().add(panel, BorderLayout.CENTER);
+		
+		Choice Produto = new Choice();
+		Produto.setForeground(Color.BLACK);
+		Produto.setBackground(Color.WHITE);
+		Produto.setFont(new Font("Arial", Font.PLAIN, 12));
+		panel.add(Produto);
 		setResizable(false);
 		setSize(607,476);
 		setVisible(true);
