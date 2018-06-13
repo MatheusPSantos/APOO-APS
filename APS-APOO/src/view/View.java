@@ -60,6 +60,7 @@ public class View extends JFrame implements ActionListener{
 	    Image imag = imagem.getImage().getScaledInstance(lblImagem.getWidth(), lblImagem.getHeight(), Image.SCALE_DEFAULT);
 	    lblImagem.setIcon(new ImageIcon(imag));
 	    getContentPane().add(lblImagem);
+	    
 	    btCadastro.addActionListener(new btAcao());
 	    
 	    /**

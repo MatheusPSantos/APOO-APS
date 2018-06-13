@@ -1,16 +1,17 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JLayeredPane;
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
@@ -18,7 +19,6 @@ public class ViewEstoque extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	JMenuBar barra = new JMenuBar();
-	JMenu JMOpcoes = new JMenu("Op\u00E7\u00F5es");
 	JMenuItem miCadastroProduto = new JMenuItem("Cadastrar produto");
 	JMenuItem miChecarEstoque = new JMenuItem("Checar Estoque");
 	JMenuItem miEntregas = new JMenuItem("Entregas");
@@ -90,6 +90,7 @@ public class ViewEstoque extends JFrame implements ActionListener{
 	    lblValor.setForeground(Color.white);
 	    JPCadastrarProduto.add(lblValor);
 	    lblValor.setBounds(169,219,116,20);
+	    ImageIcon imagem = new ImageIcon(View.class.getResource("/view/Icon.png"));
 	    
 	    /**
 		 * Caixa de texto que pega as informações.
@@ -120,7 +121,13 @@ public class ViewEstoque extends JFrame implements ActionListener{
 	    btCadastrar.setBackground(Color.white);
 	    btCadastrar.addActionListener(this);
 	    JPCadastrarProduto.add(btCadastrar);
-	   btCadastrar.addActionListener(new btAcao2());
+	    
+	    JLabel lblImagem = new JLabel();
+	    lblImagem.setBounds(141, 114, 325, 148);
+	    layeredPane.add(lblImagem);
+	    Image imag = imagem.getImage().getScaledInstance(lblImagem.getWidth(), lblImagem.getHeight(), Image.SCALE_DEFAULT);
+	    lblImagem.setIcon(new ImageIcon(imag));
+	    btCadastrar.addActionListener(new btAcao2());
 		
 		/**
 		 * Açoes Barra de menu.

@@ -28,7 +28,7 @@ public class PesFisica extends Usuario {
      * não recebe parâmetro por enquanto
      */
     public boolean realizarPedido() {
-        boolean flag = 0; // variavel de verificação do estado do pedido
+        boolean flag = false; // variavel de verificação do estado do pedido
         return flag; // retornar o estado do pedido, se for 1 = PEDIDO REALIZADO se 0 = ERRO NO PEDIDO
     }
 
@@ -47,7 +47,7 @@ public class PesFisica extends Usuario {
      * 0 = falha no pagamento
      */
     public boolean realizarPagamento() {
-        boolean flag = 0; // flag que indica o sucesso do pagamento
+        boolean flag = false; // flag que indica o sucesso do pagamento
 
         return flag;
     }
