@@ -77,7 +77,7 @@ public class ViewCadastro extends JFrame implements ActionListener {
 	    getContentPane().add(lblCPF);
 	    
 	    /**
-		 * Caixa de texto que pega as informações.
+		 * Caixa de texto que pega as informaï¿½ï¿½es.
 		 */
 	    
 	    lblSenha = new JLabel("Senha: ");
@@ -122,17 +122,17 @@ public class ViewCadastro extends JFrame implements ActionListener {
 	    email = new JTextField("");
 	    email.setBounds(210,126,220,20);
 	    getContentPane().add(email);
-	    
-	    Nome = jtxtnome.getText();
-	    Email = jtxtCPF.getText();
-	    Telefone = telefone.getText();
-	    Rua = jtxtrua.getText();
-	    Numero = jtxtn.getText();
-	    Bairro = jtxtbairro.getText();
-	    CPF = jtxtCPF.getText();
-	    //CNPJ = jtxtCNPJ.getText();
-	    //Senha = jpSenha.getText();
-	    
+	   	  
+	    this.Nome = jtxtnome.getText();
+	    this.Email = jtxtCPF.getText();
+	    this.Telefone = telefone.getText();
+	    this.Rua = jtxtrua.getText();
+	    this.Numero = jtxtn.getText();
+	    this.Bairro = jtxtbairro.getText();
+	    this.CPF = jtxtCPF.getText();
+	    //this.CNPJ = jtxtCNPJ.getText();
+	    //this.Senha = jpSenha.getText();
+    
 	    /**
 		 * Botoes.
 		 */
@@ -151,7 +151,7 @@ public class ViewCadastro extends JFrame implements ActionListener {
 	    getContentPane().add(jpSenha);
 	    
 	    /**
-		 * Definição do Frame.
+		 * Definiï¿½ï¿½o do Frame.
 		 */
 	    
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -192,7 +192,7 @@ public class ViewCadastro extends JFrame implements ActionListener {
 	}
 	
 	/**
-	 * Açoes dos botoes.
+	 * Aï¿½oes dos botoes.
 	 */
 	
 	private class btAcao implements ActionListener{

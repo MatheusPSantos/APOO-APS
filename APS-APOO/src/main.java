@@ -1,8 +1,8 @@
 import view.ViewCadastro;
 
-// Arquivo principal que irá chamar todas as outras classes e métodos
-// É aqui que o programa inicia
-
-public class main {    
-
+public class main {
+ public stativ void main(Strings []args) {
+    ViewCadastro viewCadastro = new ViewCadastro();
+    viewCadastro.setVisible(true);
+ }
 }
