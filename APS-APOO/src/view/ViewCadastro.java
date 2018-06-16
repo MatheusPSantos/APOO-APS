@@ -18,7 +18,7 @@ public class ViewCadastro extends JFrame implements ActionListener {
 	
 	private JLabel lblCPF,lblTelefone,lblBairro,lblNome,lblRua,lblN,lblEmail;
 	private JButton btOk;
-	private JTextField nome,CPF,telefone,bairro,rua,n,email;
+	public JTextField nome,CPF,telefone,bairro,rua,n,email;
 	private JPasswordField pwdRr;
 
 	

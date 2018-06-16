@@ -56,7 +56,7 @@ public class View extends JFrame implements ActionListener{
 	    
 	    lblImagem = new JLabel();
 	    lblImagem.setBounds(360,149,185,100);
-	    ImageIcon imagem = new ImageIcon(View.class.getResource("/view/Icon.png"));
+	    ImageIcon imagem = new ImageIcon(View.class.getResource("/assets/Icon.png"));
 	    Image imag = imagem.getImage().getScaledInstance(lblImagem.getWidth(), lblImagem.getHeight(), Image.SCALE_DEFAULT);
 	    lblImagem.setIcon(new ImageIcon(imag));
 	    getContentPane().add(lblImagem);
