@@ -4,31 +4,36 @@
 // Classe mãe Usuário
 package models;
 
+import view.ViewCadastro;
+
 public class Usuario {
     // atributos da classe
     private String nome;
     private String email;
     private String senha;
-    private String endereco;
+    private String[] endereco = new String[3];
     private String telefone;
 
+    private ViewCadastro viewCadastro = new ViewCadastro();
     // métodos acessores
 
     // set's
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(ViewCadastro viewCadasrtro) {
+        this.nome = viewCadastro.Nome;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(ViewCadastro viewCadastro) {
+        this.email = viewCadastro.Email;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setSenha(ViewCadastro viewCadastro) {
+        this.senha = viewCadastro.Senha;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setEndereco(ViewCadastro viewCadastro) {
+        this.endereco[1] = viewCadastro.Rua;
+        this.endereco[2] = viewCadastro.Numero;
+        this.endereco[3] = viewCadastro.Bairro;
     }
 
     public void setTelefone(String telefone) {
@@ -49,11 +54,17 @@ public class Usuario {
     }
 
     public String getEndereco() {
-        return this.endereco;
+        String string = this.endereco[];
+		return string;
     }
 
     public String getTelefone() {
         return this.telefone;
+    }
+
+    // método de cadastramento
+    private void fazerCadastro() {
+
     }
 }
 

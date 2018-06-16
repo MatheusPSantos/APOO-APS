@@ -1,8 +1,9 @@
-// Arquivo principal que irá chamar todas as outras classes e métodos
-// É aqui que o programa inicia
+import view.ViewCadastro;
+
 
 public class Main {    
-    public static void main(String []args) {
-        
+    public static void main(String[] args) {
+        ViewCadastro vc = new ViewCadastro();
+        vc.setVisible(true);
     }
 }
