@@ -8,7 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JRadioButton;
 import javax.swing.JPasswordField;
 
 public class ViewCadastro extends JFrame implements ActionListener {
@@ -18,17 +17,20 @@ public class ViewCadastro extends JFrame implements ActionListener {
 	
 	private JLabel lblCPF,lblTelefone,lblBairro,lblNome,lblRua,lblN,lblEmail;
 	private JButton btOk;
-	public JTextField jtxtnome,jtxtCPF,telefone,jtxtbairro,jtxtrua,jtxtn,email,jtxtCNPJ;
-	private JPasswordField pwdRr;
+	private JTextField jtxtnome,jtxtCPF,telefone,jtxtbairro,jtxtrua,jtxtn,email,jtxtCNPJ;
+	private JPasswordField jpSenha;
 	private JLabel lblSenha;
-	private JTextField jtxttextField;
+	private JTextField jtxCNPJ;
 	public String Nome,Email,Telefone,Rua,Numero,Bairro,CPF,Senha,CNPJ;
-
+	//private int clock1 = 0;
+	//private int clock2 = 0;
+	private JButton btnCfp = new JButton("CFP");
+	private JButton btnCnpj = new JButton("CNPJ");
+	private JLabel lblCNPJ;
 	
 	
 	public static void main(String[] args) {
 	 new ViewCadastro();
-		
 	}
 
 	public ViewCadastro() {
@@ -83,22 +85,23 @@ public class ViewCadastro extends JFrame implements ActionListener {
 	    lblSenha.setBounds(162, 276, 46, 14);
 	    getContentPane().add(lblSenha);
 	    
-	    JLabel lblNewLabel = new JLabel("New label");
-	    lblNewLabel.setBounds(0, 0, 46, 14);
-	    getContentPane().add(lblNewLabel);
+	    lblCNPJ = new JLabel("CNPJ");
+	    lblCNPJ.setForeground(Color.WHITE);
+	    lblCNPJ.setBounds(166, 254, 46, 14);
+	    getContentPane().add(lblCNPJ);
 	    
 	    jtxtnome = new JTextField("Nome completo");
 	    jtxtnome.setBounds(210,101,220,20);
 	    getContentPane().add(jtxtnome);
 	    
-	    jtxtCPF = new JTextField("");
+	    jtxtCPF = new JTextField("CPF");
 	    jtxtCPF.setBounds(210,251,220,20);
 	    getContentPane().add(jtxtCPF);
 	    
-	    jtxttextField = new JTextField();
-	    jtxttextField.setBounds(210, 251, 220, 20);
-	    getContentPane().add(jtxttextField);
-	    jtxttextField.setColumns(10);
+	    jtxCNPJ = new JTextField();
+	    jtxCNPJ.setBounds(210, 251, 220, 20);
+	    getContentPane().add(jtxCNPJ);
+	    jtxCNPJ.setColumns(10);
 	    
 	    jtxtbairro = new JTextField("");
 	    jtxtbairro.setBounds(210,201,220,20);
@@ -119,9 +122,7 @@ public class ViewCadastro extends JFrame implements ActionListener {
 	    email = new JTextField("");
 	    email.setBounds(210,126,220,20);
 	    getContentPane().add(email);
-	    
-	    
-	    
+	   	  
 	    this.Nome = jtxtnome.getText();
 	    this.Email = jtxtCPF.getText();
 	    this.Telefone = telefone.getText();
@@ -130,7 +131,8 @@ public class ViewCadastro extends JFrame implements ActionListener {
 	    this.Bairro = jtxtbairro.getText();
 	    this.CPF = jtxtCPF.getText();
 	    //this.CNPJ = jtxtCNPJ.getText();
-	    
+	    //this.Senha = jpSenha.getText();
+    
 	    /**
 		 * Botoes.
 		 */
@@ -144,9 +146,9 @@ public class ViewCadastro extends JFrame implements ActionListener {
 	    lblTipo.setBounds(166, 232, 46, 14);
 	    getContentPane().add(lblTipo);
 	    
-	    pwdRr = new JPasswordField();
-	    pwdRr.setBounds(210, 276, 220, 20);
-	    getContentPane().add(pwdRr);
+	    jpSenha = new JPasswordField();
+	    jpSenha.setBounds(210, 276, 220, 20);
+	    getContentPane().add(jpSenha);
 	    
 	    /**
 		 * Defini��o do Frame.
@@ -155,12 +157,30 @@ public class ViewCadastro extends JFrame implements ActionListener {
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setBackground(Color.darkGray);
 		
-		JButton btnCfp = new JButton("CFP");
+		
 		btnCfp.setBounds(210, 226, 100, 20);
 		getContentPane().add(btnCfp);
+		btnCfp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				jtxCNPJ.setVisible(false);
+				jtxtCPF.setVisible(true);
+				lblCPF.setVisible(true);
+				lblCNPJ.setVisible(false);
+			}
+		});
 		
-		JButton btnCnpj = new JButton("CNPJ");
+		
 		btnCnpj.setBounds(330, 226, 100, 20);
+		btnCnpj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				jtxCNPJ.setVisible(true);
+				jtxtCPF.setVisible(false);
+				lblCPF.setVisible(false);
+				lblCNPJ.setVisible(true);
+			}
+		});
+		jtxCNPJ.setVisible(false);
+		jtxtCPF.setVisible(false);
 		getContentPane().add(btnCnpj);
 		setResizable(false);
 		setSize(607,476);

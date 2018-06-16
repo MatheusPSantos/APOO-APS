@@ -37,6 +37,7 @@ public class ViewEstoque extends JFrame implements ActionListener{
 	public JLabel lblImagem = new JLabel();
 	private JButton btnEntregue;
 	private JButton btnChecado;
+	public String NomeProduto,Marca,Valor,Quantidade;
 	
 
 	/**
@@ -207,6 +208,11 @@ public class ViewEstoque extends JFrame implements ActionListener{
 	    jtValor = new JTextField("");
 	    JPCadastrarProduto.add(jtValor);
 	    jtValor.setBounds(228,219,220,20);
+	    
+	    NomeProduto = jtNomeProduto.getText();
+	    Marca = jtMarca.getText();
+	    Quantidade = jtQuantidade.getText();
+	    Valor = jtValor.getText();
 	    
 	    /**
 		 * Botao Cadastrar.

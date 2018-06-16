@@ -23,7 +23,6 @@ public class View extends JFrame implements ActionListener{
 	 */
 	public static void main(String[] args) {
 		new View();
-		
 	}
 		
 	
@@ -62,6 +61,7 @@ public class View extends JFrame implements ActionListener{
 	    getContentPane().add(lblImagem);
 	    
 	    btCadastro.addActionListener(new btAcao());
+	    btLogin.addActionListener(new btAcao());
 	    
 	    /**
 		 * Definição do Frame.

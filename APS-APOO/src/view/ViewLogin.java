@@ -12,9 +12,9 @@ public class ViewLogin extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private JLabel lblID,lblSenha;
-	private JTextField ID;
-	private JPasswordField Senha;
-	
+	private JTextField jtID;
+	private JPasswordField jpSenha;
+	public String ID,Senha;
 	
 	public static void main(String[] args) {
 	 new ViewLogin();
@@ -44,13 +44,16 @@ public class ViewLogin extends JFrame {
 		 * Caixa de texto que pega as informações.
 		 */
 	    
-	    Senha = new JPasswordField();
-	    Senha.setBounds(237,190,220,20);
-	    getContentPane().add(Senha);
+	    jpSenha = new JPasswordField();
+	    jpSenha.setBounds(237,190,220,20);
+	    getContentPane().add(jpSenha);
 	    
-	    ID = new JTextField("ID/E-mail");
-	    ID.setBounds(237,159,220,20);
-	    getContentPane().add(ID);
+	    jtID = new JTextField("ID/E-mail");
+	    jtID.setBounds(237,159,220,20);
+	    getContentPane().add(jtID);
+	    
+	    ID = jtID.getText();
+	    Senha = jpSenha.getText();
 	    
 	    /**
 		 * Definição do Frame.

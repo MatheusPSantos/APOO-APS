@@ -1,9 +1,8 @@
 import view.ViewCadastro;
 
-
-public class Main {    
-    public static void main(String[] args) {
-        ViewCadastro vc = new ViewCadastro();
-        vc.setVisible(true);
-    }
+public class main {
+ public stativ void main(Strings []args) {
+    ViewCadastro viewCadastro = new ViewCadastro();
+    viewCadastro.setVisible(true);
+ }
 }
