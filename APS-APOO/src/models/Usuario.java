@@ -31,9 +31,9 @@ public class Usuario {
     }
 
     public void setEndereco(ViewCadastro viewCadastro) {
-        this.endereco[1] = viewCadastro.Rua;
-        this.endereco[2] = viewCadastro.Numero;
-        this.endereco[3] = viewCadastro.Bairro;
+        this.endereco[0] = viewCadastro.Rua;
+        this.endereco[1] = viewCadastro.Numero;
+        this.endereco[2] = viewCadastro.Bairro;
     }
 
     public void setTelefone(String telefone) {
@@ -53,10 +53,6 @@ public class Usuario {
         return this.senha;
     }
 
-    public String getEndereco() {
-        String string = this.endereco[];
-		return string;
-    }
 
     public String getTelefone() {
         return this.telefone;
