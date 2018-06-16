@@ -96,25 +96,6 @@ public class ViewPedido extends JFrame implements ActionListener{
 		/**
 		 * Definindo JlayeredPane e o JPanel.
 		 */
-		JPFavorito.setBounds(0, 0, 603, 426);
-		layeredPane.add(JPFavorito);
-		JPFavorito.setBackground(Color.DARK_GRAY);
-		JPFavorito.setVisible(false);
-		JPFavorito.setLayout(null);
-		
-		btnChecado = new JButton("OK");
-		btnChecado.setBounds(261, 353, 89, 23);
-		btnChecado.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent a) {
-				JPPedido.setVisible(false);
-				JPFavorito.setVisible(false);
-				JPEntrgas.setVisible(false);
-			}
-		});
-		JPFavorito.add(btnChecado);
-		btnChecado.setBackground(Color.WHITE);
 		
 		
 		JPEntrgas.setBackground(Color.DARK_GRAY);
@@ -141,6 +122,25 @@ public class ViewPedido extends JFrame implements ActionListener{
 		textEstadoDeEntrega.setBounds(85, 67, 440, 275);
 		
 		JPEntrgas.add(textEstadoDeEntrega);
+		JPFavorito.setBounds(0, 0, 603, 426);
+		layeredPane.add(JPFavorito);
+		JPFavorito.setBackground(Color.DARK_GRAY);
+		JPFavorito.setVisible(false);
+		JPFavorito.setLayout(null);
+		
+		btnChecado = new JButton("OK");
+		btnChecado.setBounds(261, 353, 89, 23);
+		btnChecado.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent a) {
+				JPPedido.setVisible(false);
+				JPFavorito.setVisible(false);
+				JPEntrgas.setVisible(false);
+			}
+		});
+		JPFavorito.add(btnChecado);
+		btnChecado.setBackground(Color.WHITE);
 		JPPedido = new JPanel();
 		JPPedido.setBackground(Color.DARK_GRAY);
 		JPPedido.setBounds(0, 0, 603, 426);
