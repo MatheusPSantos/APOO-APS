@@ -5,8 +5,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class ViewLogin extends JFrame {
+public class ViewLogin extends JFrame implements ActionListener{
 
 	
 	private static final long serialVersionUID = 1L;
@@ -15,10 +18,10 @@ public class ViewLogin extends JFrame {
 	private JTextField jtID;
 	private JPasswordField jpSenha;
 	public String ID,Senha;
+	private JButton btnLoging;
 	
 	public static void main(String[] args) {
 	 new ViewLogin();
-		
 	}
 
 	public ViewLogin() {
@@ -52,8 +55,7 @@ public class ViewLogin extends JFrame {
 	    jtID.setBounds(237,159,220,20);
 	    getContentPane().add(jtID);
 	    
-	    ID = jtID.getText();
-	    Senha = jpSenha.getText();
+	    
 	    
 	    /**
 		 * Definição do Frame.
@@ -61,10 +63,48 @@ public class ViewLogin extends JFrame {
 	    
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setBackground(Color.darkGray);
+		
+		
+		
+		btnLoging = new JButton("Login");
+		btnLoging.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/**
+				 * Criar um Verificador de usuario.
+				 */
+				ID = jtID.getText();
+				Senha = jpSenha.getText();
+				/**
+				 * Criar um Verificador de usuario.
+				 * 
+				  if(CPF) {
+					new ViewPedido();
+					setVisible(false);
+				}else if(CNPJ) {
+					new ViewEstoque();
+					setVisible(false);
+				}else {
+					
+				}
+				 * 
+				 */
+				
+				
+					
+			}
+		});
+		btnLoging.setBounds(279, 231, 89, 23);
+		getContentPane().add(btnLoging);
 		setResizable(false);
 		setSize(607,476);
 		setVisible(true);
 		setLocationRelativeTo(null);
 		setTitle("Login");
 	}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
 }

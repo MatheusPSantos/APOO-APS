@@ -15,6 +15,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
+import java.awt.Panel;
 
 public class ViewPedido extends JFrame implements ActionListener{
 
@@ -25,20 +26,25 @@ public class ViewPedido extends JFrame implements ActionListener{
 	public JMenuItem miEntregas = new JMenuItem("Entregas");
 	public JButton btnPedido = new JButton("Pedido");
 	public JButton btnFavorito = new JButton("Favoritos");
-	public JButton btnEntregas = new JButton("Entregas");
-	public JPanel JPPedido;
+	public JButton btnEntregas = new JButton("Estado de Entrega");
+	public JPanel JPMercados;
 	JPanel JPEntrgas = new JPanel();
-	public JButton btFazerPedido;
 	public final JLayeredPane layeredPane = new JLayeredPane();
 	public final JPanel JPFavorito = new JPanel();
 	public JLabel lblImagem = new JLabel();
 	private JButton btnEntrega;
 	private JButton btnChecado;
-	private final JComboBox listaDeSupermercados = new JComboBox();
-	private final JLabel lblMercados = new JLabel("Mercados:");
-	private final JComboBox tiposDeProdutos = new JComboBox();
-	private final JLabel lblTiposDeProdutos = new JLabel("Tipo de Produtos");
 	private final JTextArea textEstadoDeEntrega = new JTextArea();
+	private final JPanel JPlistaDEPedido = new JPanel();
+	private final Panel listaDeCompras = new Panel();
+	private final Panel lista = new Panel();
+	private final JTextArea listaDeProdutos = new JTextArea();
+	private final JLabel lblNewLabel_1 = new JLabel("Pedido: ");
+	private final JButton btnNewButton_2 = new JButton("");
+	private final JButton btnF = new JButton("F");
+	private final JButton btnNewButton_3 = new JButton("Comfirmar Pedido");
+	private final JButton btnQuantidade = new JButton("Quantidade");
+	private final JButton btnSalvarPedido = new JButton("Salvar Pedido");
 	
 
 	/**
@@ -64,7 +70,7 @@ public class ViewPedido extends JFrame implements ActionListener{
 			
 			@Override
 			public void actionPerformed(ActionEvent a) {
-				JPPedido.setVisible(true);
+				JPMercados.setVisible(true);
 				JPFavorito.setVisible(false);
 				JPEntrgas.setVisible(false);
 			}
@@ -76,7 +82,7 @@ public class ViewPedido extends JFrame implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent a) {
 				JPFavorito.setVisible(true);
-				JPPedido.setVisible(false);
+				JPMercados.setVisible(false);
 				JPEntrgas.setVisible(false);
 			}
 		});
@@ -87,7 +93,7 @@ public class ViewPedido extends JFrame implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent a) {
 				JPFavorito.setVisible(false);
-				JPPedido.setVisible(false);
+				JPMercados.setVisible(false);
 				JPEntrgas.setVisible(true);
 			}
 		});
@@ -96,6 +102,93 @@ public class ViewPedido extends JFrame implements ActionListener{
 		/**
 		 * Definindo JlayeredPane e o JPanel.
 		 */
+		
+		
+		listaDeCompras.setBounds(0, 0, 603, 426);
+		listaDeCompras.setLayout(null);
+		listaDeCompras.setVisible(false);
+		layeredPane.add(listaDeCompras);
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setBounds(10, 263, 46, 14);
+		
+		listaDeCompras.add(lblNewLabel_1);
+		
+		lista.setBounds(10, 64, 572, 193);
+		lista.setLayout(null);
+		listaDeCompras.add(lista);
+		btnQuantidade.setBounds(481, 0, 91, 30);
+		
+		lista.add(btnQuantidade);
+		btnNewButton_2.setEnabled(false);
+		btnNewButton_2.setBounds(70, 0, 410, 30);
+		
+		lista.add(btnNewButton_2);
+		btnF.setBounds(0, 0, 71, 30);
+		
+		lista.add(btnF);
+		listaDeProdutos.setEditable(false);
+		listaDeProdutos.setBounds(10, 276, 572, 77);
+		
+		listaDeCompras.add(listaDeProdutos);
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				listaDeCompras.setVisible(false);
+			}
+		});
+		btnNewButton_3.setBounds(433, 364, 122, 23);
+		
+		listaDeCompras.add(btnNewButton_3);
+		btnSalvarPedido.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				listaDeCompras.setVisible(false);
+			}
+		});
+		btnSalvarPedido.setBounds(306, 364, 107, 23);
+		
+		listaDeCompras.add(btnSalvarPedido);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.addItem("Doce");
+		comboBox.setBounds(233, 38, 164, 20);
+		listaDeCompras.add(comboBox);
+		
+		JLabel lblTipo = new JLabel("Tipo:");
+		lblTipo.setForeground(Color.WHITE);
+		lblTipo.setBounds(233, 26, 46, 14);
+		listaDeCompras.add(lblTipo);
+		
+		JLabel lblProdutos = new JLabel("Produtos: ");
+		lblProdutos.setForeground(Color.WHITE);
+		lblProdutos.setBounds(10, 51, 73, 14);
+		listaDeCompras.add(lblProdutos);
+		JPMercados = new JPanel();
+		JPMercados.setBounds(0, 0, 603, 426);
+		layeredPane.add(JPMercados);
+		JPMercados.setBackground(Color.DARK_GRAY);
+		JPMercados.setVisible(false);
+		JPMercados.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Super Mercados: ");
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBounds(20, 11, 157, 14);
+		JPMercados.add(lblNewLabel);
+		
+		JPlistaDEPedido.setBackground(Color.WHITE);
+		JPlistaDEPedido.setBounds(20, 32, 573, 364);
+		JPlistaDEPedido.setLayout(null);
+		JPMercados.add(JPlistaDEPedido);
+		
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setLocation(0, 0);
+		btnNewButton.setSize(573, 50);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			 listaDeCompras.setVisible(true);
+			 JPMercados.setVisible(false);
+			}
+		});
+		JPlistaDEPedido.add(btnNewButton);
 		
 		
 		JPEntrgas.setBackground(Color.DARK_GRAY);
@@ -110,7 +203,7 @@ public class ViewPedido extends JFrame implements ActionListener{
 			
 			@Override
 			public void actionPerformed(ActionEvent a) {
-				JPPedido.setVisible(false);
+				JPMercados.setVisible(false);
 				JPFavorito.setVisible(false);
 				JPEntrgas.setVisible(false);
 			}
@@ -134,48 +227,13 @@ public class ViewPedido extends JFrame implements ActionListener{
 			
 			@Override
 			public void actionPerformed(ActionEvent a) {
-				JPPedido.setVisible(false);
+				JPMercados.setVisible(false);
 				JPFavorito.setVisible(false);
 				JPEntrgas.setVisible(false);
 			}
 		});
 		JPFavorito.add(btnChecado);
 		btnChecado.setBackground(Color.WHITE);
-		JPPedido = new JPanel();
-		JPPedido.setBackground(Color.DARK_GRAY);
-		JPPedido.setBounds(0, 0, 603, 426);
-		layeredPane.add(JPPedido);
-		JPPedido.setVisible(false);
-		JPPedido.setLayout(null);
-		
-		btFazerPedido = new JButton("Comfirmar Pedido");
-		btFazerPedido.setBounds(215,345,168,20);
-		btFazerPedido.setBackground(Color.white);
-		btFazerPedido.addActionListener(this);
-		btFazerPedido.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent a) {
-				JPPedido.setVisible(false);
-				JPFavorito.setVisible(false);
-				JPEntrgas.setVisible(false);
-			}
-		});
-		JPPedido.add(btFazerPedido);
-		listaDeSupermercados.setBounds(204, 37, 217, 20);
-		
-		JPPedido.add(listaDeSupermercados);
-		tiposDeProdutos.setBounds(204, 73, 218, 20);
-		
-		JPPedido.add(tiposDeProdutos);
-		lblTiposDeProdutos.setForeground(Color.WHITE);
-		lblTiposDeProdutos.setBounds(204, 58, 105, 14);
-		
-		JPPedido.add(lblTiposDeProdutos);
-		lblMercados.setForeground(Color.WHITE);
-		lblMercados.setBounds(203, 22, 92, 14);
-		
-		JPPedido.add(lblMercados);
 		layeredPane.setBounds(0, 0, 601, 426);
 		getContentPane().add(layeredPane);
 	    
@@ -186,7 +244,7 @@ public class ViewPedido extends JFrame implements ActionListener{
 			
 			@Override
 			public void actionPerformed(ActionEvent a) {
-				JPPedido.setVisible(false);
+				JPMercados.setVisible(false);
 				JPFavorito.setVisible(false);
 				JPEntrgas.setVisible(false);
 			}
