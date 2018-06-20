@@ -7,10 +7,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import models.Cliente;
 import models.ClienteDAO;
+import models.Lojista;
+import models.LojistaDAO;
 
 import javax.swing.JPasswordField;
 
@@ -21,16 +24,16 @@ public class ViewCadastro extends JFrame implements ActionListener {
 	
 	private JLabel lblCPF,lblTelefone,lblBairro,lblNome,lblRua,lblN,lblEmail;
 	private JButton btOk;
-	private JTextField jtxtnome,jtxtCPF,telefone,jtxtbairro,jtxtrua,jtxtn,email,jtxtCNPJ;
+	private JTextField jtxtnome,jtxtCPF,telefone,jtxtbairro,jtxtrua,jtxtn,email;
 	private JPasswordField jpSenha;
 	private JLabel lblSenha;
 	private JTextField jtxCNPJ;
-	//private String CPF, CNPJ; 	// variaveis para pegar o valor do cpf e do cnpj
-	//private int clock1 = 0;
-	//private int clock2 = 0;
+	public String Nome,Email,Telefone,Rua,Numero,Bairro,CPF,Senha,CNPJ,NomeMercado;
+	private JLabel lblMercado = new JLabel("Mercado: ");
 	private JButton btnCfp = new JButton("CFP");
 	private JButton btnCnpj = new JButton("CNPJ");
 	private JLabel lblCNPJ;
+	private JTextField textNomeMercado;
 	
 	
 	public static void main(String[] args) {
@@ -77,7 +80,7 @@ public class ViewCadastro extends JFrame implements ActionListener {
 
 	    lblCPF = new JLabel("CPF :");
 	    lblCPF.setForeground(Color.white);
-	    lblCPF.setBounds(167,251,33,20);
+	    lblCPF.setBounds(167,277,33,20);
 	    getContentPane().add(lblCPF);
 	    
 	    /**
@@ -86,12 +89,12 @@ public class ViewCadastro extends JFrame implements ActionListener {
 	    
 	    lblSenha = new JLabel("Senha: ");
 	    lblSenha.setForeground(Color.WHITE);
-	    lblSenha.setBounds(162, 276, 46, 14);
+	    lblSenha.setBounds(162, 227, 46, 14);
 	    getContentPane().add(lblSenha);
 	    
 	    lblCNPJ = new JLabel("CNPJ");
 	    lblCNPJ.setForeground(Color.WHITE);
-	    lblCNPJ.setBounds(166, 254, 46, 14);
+	    lblCNPJ.setBounds(166, 280, 46, 14);
 	    getContentPane().add(lblCNPJ);
 	    
 	    jtxtnome = new JTextField("Nome completo");
@@ -99,11 +102,11 @@ public class ViewCadastro extends JFrame implements ActionListener {
 	    getContentPane().add(jtxtnome);
 	    
 	    jtxtCPF = new JTextField("CPF");
-	    jtxtCPF.setBounds(210,251,220,20);
+	    jtxtCPF.setBounds(210,277,220,20);
 	    getContentPane().add(jtxtCPF);
 	    
 	    jtxCNPJ = new JTextField();
-	    jtxCNPJ.setBounds(210, 251, 220, 20);
+	    jtxCNPJ.setBounds(210, 277, 220, 20);
 	    getContentPane().add(jtxCNPJ);
 	    jtxCNPJ.setColumns(10);
 	    
@@ -134,15 +137,15 @@ public class ViewCadastro extends JFrame implements ActionListener {
 
 	    btOk = new JButton("OK");
 	    btOk.setBackground(Color.white);
-	    btOk.setBounds(250,312,100,20);
+	    btOk.setBounds(252,344,100,20);
 	    getContentPane().add(btOk);
 	    JLabel lblTipo = new JLabel("Tipo :");
 	    lblTipo.setForeground(Color.white);
-	    lblTipo.setBounds(166, 232, 46, 14);
+	    lblTipo.setBounds(166, 258, 46, 14);
 	    getContentPane().add(lblTipo);
 	    
 	    jpSenha = new JPasswordField();
-	    jpSenha.setBounds(210, 276, 220, 20);
+	    jpSenha.setBounds(210, 227, 220, 20);
 	    getContentPane().add(jpSenha);
 	    
 	    /**
@@ -153,7 +156,7 @@ public class ViewCadastro extends JFrame implements ActionListener {
 		getContentPane().setBackground(Color.darkGray);
 		
 		
-		btnCfp.setBounds(210, 226, 100, 20);
+		btnCfp.setBounds(210, 252, 100, 20);
 		getContentPane().add(btnCfp);
 		btnCfp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -161,24 +164,43 @@ public class ViewCadastro extends JFrame implements ActionListener {
 				jtxtCPF.setVisible(true);
 				lblCPF.setVisible(true);
 				lblCNPJ.setVisible(false);
+				lblMercado.setVisible(false);
+				textNomeMercado.setVisible(false);
 			}
 		});
 		
 		
-		btnCnpj.setBounds(330, 226, 100, 20);
+		btnCnpj.setBounds(330, 252, 100, 20);
 		btnCnpj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				jtxCNPJ.setVisible(true);
 				jtxtCPF.setVisible(false);
 				lblCPF.setVisible(false);
 				lblCNPJ.setVisible(true);
+				lblMercado.setVisible(true);
+				textNomeMercado.setVisible(true);
+				
 			}
 		});
+		
+		
+		getContentPane().add(btnCnpj);
+		
+		textNomeMercado = new JTextField();
+		textNomeMercado.setBounds(210, 302, 220, 20);
+		getContentPane().add(textNomeMercado);
+		textNomeMercado.setColumns(10);
+		
+		
+		lblMercado.setForeground(Color.WHITE);
+		lblMercado.setBounds(153, 305, 59, 14);
 		jtxCNPJ.setVisible(false);
 		jtxtCPF.setVisible(false);
 		lblCPF.setVisible(false);
 		lblCNPJ.setVisible(false);
-		getContentPane().add(btnCnpj);
+		lblMercado.setVisible(false);
+		textNomeMercado.setVisible(false);
+		getContentPane().add(lblMercado);
 		setResizable(false);
 		setSize(607,476);
 		setVisible(true);
@@ -187,7 +209,6 @@ public class ViewCadastro extends JFrame implements ActionListener {
 		
 		btOk.addActionListener(new btAcao());
 	}
-	
 	/**
 	 * A�oes dos botoes.
 	 */
@@ -202,26 +223,41 @@ public class ViewCadastro extends JFrame implements ActionListener {
 				/**
 				 * Manda os dados obtidos.
 				 */
+				try {
+					// verificando se é CPF ou CNPJ
+					if(jtxCNPJ.getText().isEmpty()) {
 						
-				// verificando se é CPF ou CNPJ
-				if(jtxCNPJ.getText().isEmpty()) {
+						Cliente cliente = new Cliente();// instanciando um objeto da classse Cliente
+						ClienteDAO clienteDAO = new ClienteDAO(); // objeto para o acesso de dados
+						cliente.setNome(jtxtnome.getText());
+						cliente.setEmail(email.getText());
+						cliente.setSenha(jpSenha.getText());
+						cliente.setTelefone(telefone.getText());
+						cliente.setCPF(jtxtCPF.getText());
+						
+						// passando para a criação no banco
+						clienteDAO.create(cliente);
+						
+					} else {
+						
+						Lojista lojista = new Lojista(); // instanciando um objeto lojista
+						LojistaDAO lojistaDAO = new LojistaDAO();	// objeto de acesso aos dados
+						lojista.setNome(jtxtnome.getText());
+						lojista.setEmail(email.getText());
+						lojista.setSenha(jpSenha.getText());
+						lojista.setTelefone(telefone.getText());
+						lojista.setCNPJ(jtxCNPJ.getText());
+						
+						lojistaDAO.create(lojista);	// passando objeto a ser criado no BD
+					}
 					
-					Cliente cliente = new Cliente();// instanciando um objeto da classse Cliente
-					ClienteDAO clienteDAO = new ClienteDAO(); // objeto para o acesso de dados
-					cliente.setNome(jtxtnome.getText());
-					cliente.setEmail(email.getText());
-					cliente.setSenha(jpSenha.getText());
-					cliente.setTelefone(telefone.getText());
-					cliente.setCPF(jtxtCPF.getText());
+					// direciona para a tela de login
+					new ViewLogin();
+					setVisible(false);
 					
-					// passando para a criação no banco
-					clienteDAO.create(cliente);
-				} //else if(jtxtCPF.getText() == null || jtxtCPF.getText().trim().equals("")) {
-					// O CPF está vazio ou é igual a "", logo é um CNPJ que foi informado	
-				//}
-
-				new ViewLogin();
-				setVisible(false);
+				} catch(Exception e2) {
+					JOptionPane.showMessageDialog(null, "Algum campo está inválido");
+				}
 			}
 		}	
 	}
