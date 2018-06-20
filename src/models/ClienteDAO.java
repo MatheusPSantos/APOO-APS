@@ -28,7 +28,7 @@ public class ClienteDAO {
 			stmt.executeUpdate();
 			
 			// mensagem de aviso
-			JOptionPane.showMessageDialog(null, "Salvo com sucesso");
+			JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
 			
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Erro ao salvar: "+e);
