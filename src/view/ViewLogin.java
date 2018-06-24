@@ -44,7 +44,7 @@ public class ViewLogin extends JFrame implements ActionListener{
 	    
 	    
 	    /**
-		 * Caixa de texto que pega as informações.
+		 * Caixa de texto que pega as informaï¿½ï¿½es.
 		 */
 	    
 	    jpSenha = new JPasswordField();
@@ -58,7 +58,7 @@ public class ViewLogin extends JFrame implements ActionListener{
 	    
 	    
 	    /**
-		 * Definição do Frame.
+		 * Definiï¿½ï¿½o do Frame.
 		 */
 	    
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,12 +71,10 @@ public class ViewLogin extends JFrame implements ActionListener{
 			public void actionPerformed(ActionEvent e) {
 				/**
 				 * Criar um Verificador de usuario.
-				 */
-				ID = jtID.getText();
-				Senha = jpSenha.getText();
-				/**
-				 * Criar um Verificador de usuario.
 				 * 
+				 * ID = jtID.getText();
+				 *Senha = jpSenha.getText();
+				 *
 				  if(CPF) {
 					new ViewPedido();
 					setVisible(false);
@@ -87,10 +85,7 @@ public class ViewLogin extends JFrame implements ActionListener{
 					
 				}
 				 * 
-				 */
-				
-				
-					
+				 */	
 			}
 		});
 		btnLoging.setBounds(279, 231, 89, 23);

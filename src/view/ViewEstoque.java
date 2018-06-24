@@ -1,47 +1,53 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
 import javax.swing.JLayeredPane;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 
 public class ViewEstoque extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
-	public JMenuBar barra = new JMenuBar();
-	public JMenuItem miCadastroProduto = new JMenuItem("Cadastrar produto");
-	public JMenuItem miChecarEstoque = new JMenuItem("Checar Estoque");
-	public JMenuItem miEntregas = new JMenuItem("Entregas");
-	public JButton btnCadastrarProduto = new JButton("Cadastrar Produto");
-	public JButton btnChecarEstoque = new JButton("Checar Estoque");
-	public JButton btnEntregas = new JButton("Entregas");
-	public JPanel JPCadastrarProduto;
-	JPanel JPEntrgas = new JPanel();
-	public JLabel lblNome,lblMarca,lblQuantidade,lblValor;
-	public JTextField jtNomeProduto,jtMarca,jtQuantidade,jtValor;
-	public JButton btCadastrar;
-	public final JLayeredPane layeredPane = new JLayeredPane();
-	public final JPanel JPControleEstoque = new JPanel();
-	public JLabel lblImagem = new JLabel();
+	private JMenuBar barra = new JMenuBar();
+	private JButton btnCadastrarProduto = new JButton("Cadastrar Produto");
+	private JButton btnChecarEstoque = new JButton("Checar Estoque");
+	private JButton btnEntregas = new JButton("Entregas");
+	private JPanel JPCadastrarProduto;
+	private JPanel JPEntregas = new JPanel();
+	private JLabel lblNome,lblMarca,lblQuantidade,lblValor;
+	private JTextField jtNomeProduto,jtMarca,jtQuantidade,jtValor;
+	private JButton btCadastrar;
+	private final JLayeredPane layeredPane = new JLayeredPane();
+	private final JPanel JPControleEstoque = new JPanel();
+	private JLabel lblImagem = new JLabel();
 	private JButton btnEntregue;
 	private JButton btnChecado;
+	public String BuscaEstoque;
+	public int NumeroFavoritos1 = 80; 
+	public int NumeroFavoritos2 = 0;
+	private JPanel JPListaDeFavoritos = new JPanel();
+	private JScrollPane scrollFavoritos = new JScrollPane();
 	public String NomeProduto,Marca,Valor,Quantidade;
+	private JLabel lblBusca;
+	private JTextField textBuscaEstoque;
+	private JButton btnBuscar;
 	
 
 	/**
-	 * Inicio das aplicações.
+	 * Inicio das aplicaï¿½ï¿½es.
 	 */
 	public static void main(String[] args) {
 		new ViewEstoque();
@@ -58,36 +64,43 @@ public class ViewEstoque extends JFrame implements ActionListener{
 		barra.setBackground(Color.WHITE);
 		setJMenuBar(barra);
 		btnCadastrarProduto.setBackground(Color.WHITE);
-		
+		btnCadastrarProduto.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		btnCadastrarProduto.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent a) {
 				JPCadastrarProduto.setVisible(true);
 				JPControleEstoque.setVisible(false);
-				JPEntrgas.setVisible(false);
+				JPEntregas.setVisible(false);
 			}
 		});
 		barra.add(btnCadastrarProduto);
 		btnChecarEstoque.setBackground(Color.WHITE);
+		btnChecarEstoque.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		btnChecarEstoque.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent a) {
 				JPControleEstoque.setVisible(true);
 				JPCadastrarProduto.setVisible(false);
-				JPEntrgas.setVisible(false);
+				JPEntregas.setVisible(false);
+				
+				ListaDeProdutos();
+				
+				
 			}
 		});
 		barra.add(btnChecarEstoque);
 		btnEntregas.setBackground(Color.WHITE);
+		btnEntregas.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		btnEntregas.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent a) {
 				JPControleEstoque.setVisible(false);
 				JPCadastrarProduto.setVisible(false);
-				JPEntrgas.setVisible(true);
+				JPEntregas.setVisible(true);
+				
 			}
 		});
 		barra.add(btnEntregas);
@@ -109,48 +122,77 @@ public class ViewEstoque extends JFrame implements ActionListener{
 			public void actionPerformed(ActionEvent a) {
 				JPCadastrarProduto.setVisible(false);
 				JPControleEstoque.setVisible(false);
-				JPEntrgas.setVisible(false);
+				JPEntregas.setVisible(false);
 			}
 		});
 		JPControleEstoque.add(btnChecado);
 		btnChecado.setBackground(Color.WHITE);
 		
-		JTextArea Produtos = new JTextArea();
-		Produtos.setBounds(22, 109, 540, 233);
-		JPControleEstoque.add(Produtos);
+		lblBusca = new JLabel("Busca:");
+		lblBusca.setForeground(Color.WHITE);
+		lblBusca.setBounds(41, 291, 46, 14);
+		JPControleEstoque.add(lblBusca);
 		
-		JComboBox comboBox = new JComboBox();
-		//for (int i = 0; ; i++) {
-			comboBox.addItem("Tipos");
-		//}
+		textBuscaEstoque = new JTextField();
+		textBuscaEstoque.setBounds(41, 307, 238, 20);
+		JPControleEstoque.add(textBuscaEstoque);
+		textBuscaEstoque.setColumns(10);
 		
-		comboBox.setBounds(178, 54, 249, 25);
-		JPControleEstoque.add(comboBox);
+		btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				BuscaEstoque = textBuscaEstoque.getText();
+				textBuscaEstoque.setText("");
+				System.out.println(BuscaEstoque);
+				/**
+				 * Funï¿½ï¿½o de busca.
+				 */
+			}
+		});
+		btnBuscar.setBounds(289, 306, 89, 23);
+		JPControleEstoque.add(btnBuscar);
 		
-		JLabel lblTiposDeProduto = new JLabel("Tipos de Produto:");
-		lblTiposDeProduto.setForeground(Color.WHITE);
-		lblTiposDeProduto.setBounds(178, 40, 112, 14);
-		JPControleEstoque.add(lblTiposDeProduto);
-		
-		JLabel lblAlteraEstoque = new JLabel("Altera Estoque:");
-		lblAlteraEstoque.setForeground(Color.WHITE);
-		lblAlteraEstoque.setBounds(22, 95, 108, 14);
-		JPControleEstoque.add(lblAlteraEstoque);
+		/**
+		 * Lista estoque.
+		 */
 		
 		
-		JPEntrgas.setBackground(Color.DARK_GRAY);
-		JPEntrgas.setBounds(0, 0, 603, 426);
-		layeredPane.add(JPEntrgas);
-		JPEntrgas.setVisible(false);
-		JPEntrgas.setLayout(null);
+		scrollFavoritos.setBounds(10, 25, 581, 261);
+		JPControleEstoque.add(scrollFavoritos);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(69, 57, 451, 258);
-		JPEntrgas.add(textArea);
+		
+		JPListaDeFavoritos.setBackground(Color.WHITE);
+		
+		scrollFavoritos.setViewportView(JPListaDeFavoritos);
+		
+		
+		
+		JPListaDeFavoritos.setLayout(null);
+		
+		JPEntregas.setBackground(Color.DARK_GRAY);
+		JPEntregas.setBounds(0, 0, 603, 426);
+		layeredPane.add(JPEntregas);
+		JPEntregas.setVisible(false);
+		JPEntregas.setLayout(null);
+		
+		/**
+		 * Caixa de texto entrega.
+		*/
+		
+		JScrollPane scrollEntrega = new JScrollPane();
+		scrollEntrega.setBounds(69, 57, 451, 258);
+		JPEntregas.add(scrollEntrega);
+		JTextArea textEntrega = new JTextArea();
+		textEntrega.setWrapStyleWord(true);
+		textEntrega.setEditable(false);
+		scrollEntrega.setViewportView(textEntrega);
+	
+		
+		
 		
 		btnEntregue = new JButton("OK");
 		btnEntregue.setBounds(261, 353, 89, 23);
-		JPEntrgas.add(btnEntregue);
+		JPEntregas.add(btnEntregue);
 		btnEntregue.setBackground(Color.WHITE);
 		layeredPane.setBounds(0, 0, 601, 426);
 		getContentPane().add(layeredPane);
@@ -190,7 +232,7 @@ public class ViewEstoque extends JFrame implements ActionListener{
 	    
 	    
 	    /**
-		 * Caixa de texto que pega as informações.
+		 * Caixa de texto que pega as informaï¿½ï¿½es.
 		 */
 	    
 	    jtNomeProduto = new JTextField("");
@@ -226,9 +268,17 @@ public class ViewEstoque extends JFrame implements ActionListener{
 			
 			@Override
 			public void actionPerformed(ActionEvent a) {
+				NomeProduto = jtNomeProduto.getText();
+				Marca = jtMarca.getText();
+				Valor = jtValor.getText();
+				Quantidade = jtQuantidade.getText();
+				System.out.println(NomeProduto);
+				System.out.println(Marca);
+				System.out.println(Valor);
+				System.out.println(Quantidade);
 				JPCadastrarProduto.setVisible(false);
 				JPControleEstoque.setVisible(false);
-				JPEntrgas.setVisible(false);
+				JPEntregas.setVisible(false);
 			}
 		});
 	    JPCadastrarProduto.add(btCadastrar);
@@ -238,7 +288,7 @@ public class ViewEstoque extends JFrame implements ActionListener{
 			public void actionPerformed(ActionEvent a) {
 				JPCadastrarProduto.setVisible(false);
 				JPControleEstoque.setVisible(false);
-				JPEntrgas.setVisible(false);
+				JPEntregas.setVisible(false);
 			}
 		});
 	    
@@ -249,7 +299,7 @@ public class ViewEstoque extends JFrame implements ActionListener{
 	    lblImagem.setIcon(new ImageIcon(imag));
 		
 		/**
-		 * Definição do Frame.
+		 * Definiï¿½ï¿½o do Frame.
 		 */
 		
 		getContentPane().setBackground(Color.darkGray);
@@ -262,7 +312,51 @@ public class ViewEstoque extends JFrame implements ActionListener{
 		setTitle("Estoque");
 
 	}
+	
+	/**
+	 * Lista de Botoes produto.
+	 */
 
+	public void ListaDeProdutos() {
+
+		for (int i = 0; i < NumeroFavoritos1 ; i++) {
+			
+			JButton btnNomeProdutoEmEstoque = new JButton("Nome Produto "+i);
+			btnNomeProdutoEmEstoque.setBounds(0, NumeroFavoritos2, 200, 20);
+			btnNomeProdutoEmEstoque.setEnabled(false);
+			btnNomeProdutoEmEstoque.setBackground(Color.WHITE);
+			JPListaDeFavoritos.add(btnNomeProdutoEmEstoque);
+			
+			JButton btnMarcaEmEstoque = new JButton("Marca "+i);
+			btnMarcaEmEstoque.setBounds(200, NumeroFavoritos2, 200, 20);
+			btnMarcaEmEstoque.setEnabled(false);
+			btnMarcaEmEstoque.setBackground(Color.WHITE);
+			JPListaDeFavoritos.add(btnMarcaEmEstoque);
+			
+			JButton btnQuantidadeEmEstoque = new JButton("quantidade "+i);
+			btnQuantidadeEmEstoque.setBounds(400, NumeroFavoritos2, 100, 20);
+			btnQuantidadeEmEstoque.setEnabled(false);
+			btnQuantidadeEmEstoque.setBackground(Color.WHITE);
+			JPListaDeFavoritos.add(btnQuantidadeEmEstoque);
+			
+			JButton btnInfo = new JButton(" alterar ");
+			btnInfo.setBounds(500, NumeroFavoritos2, 90, 20);
+			btnInfo.setBackground(Color.LIGHT_GRAY);
+			btnInfo.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent a) {
+					/**
+					 * Alterar valor.
+					 */
+				}
+			});
+			JPListaDeFavoritos.add(btnInfo);
+			
+			NumeroFavoritos2 += 20;
+		}
+		JPListaDeFavoritos.setPreferredSize(new Dimension(560, NumeroFavoritos2));
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
