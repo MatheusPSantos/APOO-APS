@@ -3,10 +3,16 @@ package view;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import models.ClienteDAO;
+import models.LojistaDAO;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class ViewLogin extends JFrame implements ActionListener{
@@ -32,9 +38,9 @@ public class ViewLogin extends JFrame implements ActionListener{
 		 * Labels.
 		 */
 		
-	    lblID = new JLabel("ID :");
+	    lblID = new JLabel("CPF/CNPJ: ");
 	    lblID.setForeground(Color.white);
-	    lblID.setBounds(202,159,25,20);
+	    lblID.setBounds(182,159,100,20);
 	    getContentPane().add(lblID);
 	    
 	    lblSenha = new JLabel("Senha :");
@@ -51,12 +57,10 @@ public class ViewLogin extends JFrame implements ActionListener{
 	    jpSenha.setBounds(237,190,220,20);
 	    getContentPane().add(jpSenha);
 	    
-	    jtID = new JTextField("ID/E-mail");
+	    jtID = new JTextField();
 	    jtID.setBounds(237,159,220,20);
 	    getContentPane().add(jtID);
-	    
-	    
-	    
+
 	    /**
 		 * Defini��o do Frame.
 		 */
@@ -69,23 +73,20 @@ public class ViewLogin extends JFrame implements ActionListener{
 		btnLoging = new JButton("Login");
 		btnLoging.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/**
-				 * Criar um Verificador de usuario.
-				 * 
-				 * ID = jtID.getText();
-				 *Senha = jpSenha.getText();
-				 *
-				  if(CPF) {
-					new ViewPedido();
-					setVisible(false);
-				}else if(CNPJ) {
-					new ViewEstoque();
-					setVisible(false);
-				}else {
-					
-				}
-				 * 
-				 */	
+				// verificacao de usuario cliente
+				ClienteDAO clienteDAO = new ClienteDAO();
+				LojistaDAO lojistaDAO = new LojistaDAO();
+				if(clienteDAO.checkLoginCliente(jtID.getText(), jpSenha.getText())) {
+					new ViewPedido().setVisible(true);
+				} else
+					try {
+						if(lojistaDAO.checkLoginLojista(jtID.getText(), jpSenha.getText())) {
+							new ViewEstoque().setVisible(true);;
+						}
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			}
 		});
 		btnLoging.setBounds(279, 231, 89, 23);
@@ -99,7 +100,6 @@ public class ViewLogin extends JFrame implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
+
 		}
 }
