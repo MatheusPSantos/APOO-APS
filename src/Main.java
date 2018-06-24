@@ -6,8 +6,6 @@ public class Main {
 		// exibindo a tela de cadastro inicialmente
 		ViewCadastro vc = new ViewCadastro();
 		vc.setVisible(true);
-
-		
 	}
 
 }

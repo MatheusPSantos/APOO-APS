@@ -3,8 +3,8 @@ package util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import com.mysql.*;
 
 public class ConexaoMYSQL {
 	
@@ -40,6 +40,17 @@ public class ConexaoMYSQL {
 				stmt.close();
 			}
 		} catch(SQLException e) {
+			System.out.println(e);
+		}
+	}
+	
+	public static void closeConnection(Connection con, PreparedStatement stmt, ResultSet rs) {
+		closeConnection(con, stmt);
+		try {
+			if(rs != null) {
+				rs.close();
+			}
+		}catch(SQLException e) {
 			System.out.println(e);
 		}
 	}
