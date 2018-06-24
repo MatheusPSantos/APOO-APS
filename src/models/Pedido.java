@@ -5,7 +5,7 @@
 
 package models;
 
-// Definição da classe Pedido
+
 public class Pedido {
     // atributos
     private String idPedido;
@@ -13,7 +13,6 @@ public class Pedido {
     private Float valorPedido;
     private boolean statusPedido;
 
-    // métodos acessores
 
     public void setIdPedido(String idPedido) {
         this.idPedido = idPedido;
@@ -46,17 +45,11 @@ public class Pedido {
 	public void setTaxaEntrega(Float taxaEntrega) {
 		this.taxaEntrega = taxaEntrega;
     }
-    
-    /**
-     * métodos específicos
-     */
+
     public void tipoDeEntrega() {
 
     }
 
-    /**
-     * o método fazer pedido retorna um cod sobre a situação do pedido
-     */
     public int fazerPedido() {
         return 0;
     }
