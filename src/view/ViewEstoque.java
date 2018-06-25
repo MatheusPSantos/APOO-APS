@@ -14,8 +14,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
+
+import models.Lojista;
+import models.Produto;
+import models.ProdutoDAO;
+
 import javax.swing.JLayeredPane;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 public class ViewEstoque extends JFrame implements ActionListener{
@@ -27,8 +33,8 @@ public class ViewEstoque extends JFrame implements ActionListener{
 	private JButton btnEntregas = new JButton("Entregas");
 	private JPanel JPCadastrarProduto;
 	private JPanel JPEntregas = new JPanel();
-	private JLabel lblNome,lblMarca,lblQuantidade,lblValor;
-	private JTextField jtNomeProduto,jtMarca,jtQuantidade,jtValor;
+	private JLabel lblNome,lblMarca,lblQuantidade,lblCNPJ,lblValor;
+	private JTextField jtNomeProduto,jtMarca,jtQuantidade,jtCNPJ,jtValor;
 	private JButton btCadastrar;
 	private final JLayeredPane layeredPane = new JLayeredPane();
 	private final JPanel JPControleEstoque = new JPanel();
@@ -225,10 +231,20 @@ public class ViewEstoque extends JFrame implements ActionListener{
 	    JPCadastrarProduto.add(lblQuantidade);
 	    lblQuantidade.setBounds(152,188,107,20);
 	    
+	    lblCNPJ = new JLabel("seu CNPJ: ");
+	    lblCNPJ.setForeground(Color.white);
+	    JPCadastrarProduto.add(lblCNPJ);
+	    lblCNPJ.setBounds(152, 218, 107, 20);
+	    
 	    lblValor= new JLabel("Valor: R$");
 	    lblValor.setForeground(Color.white);
 	    JPCadastrarProduto.add(lblValor);
-	    lblValor.setBounds(169,219,116,20);
+	    lblValor.setBounds(169,249,116,20);
+	    
+	    JLabel lblID = new JLabel("ID produto:");
+	    lblID.setForeground(Color.white);
+	    JPCadastrarProduto.add(lblID);
+	    lblID.setBounds(169,279,116,20);
 	    
 	    
 	    /**
@@ -247,38 +263,66 @@ public class ViewEstoque extends JFrame implements ActionListener{
 	    JPCadastrarProduto.add(jtQuantidade);
 	    jtQuantidade.setBounds(228,188,220,20);
 	    
+	    jtCNPJ = new JTextField("");
+	    JPCadastrarProduto.add(jtCNPJ);
+	    jtCNPJ.setBounds(228,219,220,20);
+	    
 	    jtValor = new JTextField("");
 	    JPCadastrarProduto.add(jtValor);
-	    jtValor.setBounds(228,219,220,20);
+	    jtValor.setBounds(228,249,220,20);
 	    
-	    NomeProduto = jtNomeProduto.getText();
-	    Marca = jtMarca.getText();
-	    Quantidade = jtQuantidade.getText();
-	    Valor = jtValor.getText();
+	    JTextField jtID = new JTextField("");
+	    JPCadastrarProduto.add(jtID);
+	    jtID.setBounds(228,279,220,20);
 	    
 	    /**
 		 * Botao Cadastrar.
 		 */
 	    
-	    btCadastrar = new JButton("Cadastar");
-	    btCadastrar.setBounds(278,270,100,20);
+	    btCadastrar = new JButton("Cadastrar");
+	    btCadastrar.setBounds(278,330,100,20);
 	    btCadastrar.setBackground(Color.white);
 	    btCadastrar.addActionListener(this);
 	    btCadastrar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent a) {
-				NomeProduto = jtNomeProduto.getText();
-				Marca = jtMarca.getText();
-				Valor = jtValor.getText();
-				Quantidade = jtQuantidade.getText();
-				System.out.println(NomeProduto);
-				System.out.println(Marca);
-				System.out.println(Valor);
-				System.out.println(Quantidade);
-				JPCadastrarProduto.setVisible(false);
-				JPControleEstoque.setVisible(false);
-				JPEntregas.setVisible(false);
+
+				try {
+					if(jtNomeProduto.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Informe o nome do produto");
+					} 
+					else if(jtMarca.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Informe a marca do produto");
+					}
+					else if(jtQuantidade.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Informe a quantidade do produto");
+					}
+					else if(jtCNPJ.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Informe o seu CNPJ");
+					}
+					else if(jtValor.getText().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "Informe o valor do produto");
+					}else {
+						Produto produto = new Produto();
+						ProdutoDAO produtoDAO = new ProdutoDAO();
+						Lojista lojista = new Lojista();
+						
+						produto.setNome(jtNomeProduto.getText());
+						produto.setMarca(jtMarca.getText());
+						produto.setQuantidade(Integer.parseInt(jtQuantidade.getText()));
+						produto.setProd_id(Integer.parseInt(jtID.getText()));
+						produto.setValor(Float.parseFloat(jtValor.getText()));
+						lojista.setCNPJ(jtCNPJ.getText());
+						// criando o produto no banco de dados
+						produtoDAO.create(produto, lojista);
+						JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso.");
+					}
+					
+				}catch(Exception e) {
+					JOptionPane.showMessageDialog(null, "Error:" + e);
+				}
+
 			}
 		});
 	    JPCadastrarProduto.add(btCadastrar);
