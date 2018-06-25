@@ -23,7 +23,7 @@ public class ViewLogin extends JFrame implements ActionListener{
 	private JLabel lblID,lblSenha;
 	private JTextField jtID;
 	private JPasswordField jpSenha;
-	public String ID,Senha;
+
 	private JButton btnLoging;
 	
 	public static void main(String[] args) {
@@ -81,11 +81,12 @@ public class ViewLogin extends JFrame implements ActionListener{
 				} else
 					try {
 						if(lojistaDAO.checkLoginLojista(jtID.getText(), jpSenha.getText())) {
-							new ViewEstoque().setVisible(true);;
+
+							new ViewEstoque().setVisible(true);
 						}
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, "erro: "+e1);
 					}
 			}
 		});
